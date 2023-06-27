@@ -6,7 +6,7 @@ import Characters from "./Characters"
 import Planets from "./Planets"
 import PropTypes from "prop-types"
 
-const Main = ({ ships, ppl, films, planets }) => {
+const Main = ({ ships, characters, films, planets }) => {
   return (
     <div className="routes-container">
       <Routes>
@@ -14,7 +14,10 @@ const Main = ({ ships, ppl, films, planets }) => {
         <Route path="/starships" element={<StarshipList ships={ships} />} />
         <Route path="/films" element={<Films films={films} />} />
         <Route path="/planets" element={<Planets planets={planets} />} />
-        <Route path="/characters" element={<Characters ppl={ppl} />} />
+        <Route
+          path="/characters"
+          element={<Characters characters={characters} />}
+        />
       </Routes>
     </div>
   )
@@ -23,7 +26,7 @@ const Main = ({ ships, ppl, films, planets }) => {
 Main.propTypes = {
   ships: PropTypes.array.isRequired,
   films: PropTypes.array.isRequired,
-  ppl: PropTypes.array.isRequired,
+  characters: PropTypes.array.isRequired,
   planets: PropTypes.array.isRequired,
 }
 

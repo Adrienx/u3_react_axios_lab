@@ -5,6 +5,15 @@
   text-align: center;
 }
 
-.shipCard {
+.shipCard,
+.planetCard,
+.filmCard,
+.pplCard {
   border: 2px solid orange;
+  margin: 5px;
+}
+
+.nav-links {
+  border: 2px solid red;
+  padding: 5px;
 }
