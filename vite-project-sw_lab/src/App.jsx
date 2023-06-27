@@ -8,6 +8,9 @@ import Main from "./components/Main"
 const App = () => {
   // Declare the starship state variable. It's an empty array by default.
   const [ships, setShips] = useState([])
+  const [films, setFilms] = useState([])
+  const [planets, setPlanets] = useState([])
+  const [ppl, setPpl] = useState([])
   const [loading, setLoading] = useState(true) // Add loading state
 
   // Use the useEffect hook to ship data when the component mounts
@@ -15,7 +18,7 @@ const App = () => {
     // Define the async function getShips to fetch data
     const getShips = async () => {
       // Make a GET request to the API
-      const response = await axios.get(`${BASE_URL}`)
+      const response = await axios.get(`${BASE_URL}/starships`)
       // Set the fetched data to the ships state variable
       setShips(response.data.results)
       setLoading(false) // Set loading to false after data is fetched
@@ -24,6 +27,36 @@ const App = () => {
     // Call the getMovies function
     getShips()
   }, []) // The empty array means the useEffect hook will run once when the component mounts and not on subsequent re-renders
+
+  useEffect(() => {
+    const getFilms = async () => {
+      const response = await axios.get(`${BASE_URL}/films`)
+      setFilms(response.data.results)
+      setLoading(false)
+      console.log(response.data.results)
+    }
+    getFilms()
+  }, [])
+
+  useEffect(() => {
+    const getPlanets = async () => {
+      const response = await axios.get(`${BASE_URL}/planets`)
+      setPlanets(response.data.results)
+      setLoading(false)
+      console.log(response.data.results)
+    }
+    getPlanets()
+  }, [])
+
+  useEffect(() => {
+    const getPpl = async () => {
+      const response = await axios.get(`${BASE_URL}/ppl`)
+      setPpl(response.data.results)
+      setLoading(false)
+      console.log(response.data.results)
+    }
+    getPpl()
+  }, [])
 
   // Render the StarshipList component and pass down the ships state variable as a prop
   if (loading) {
@@ -40,7 +73,7 @@ const App = () => {
       </div>
 
       <main>
-        <Main ships={ships} />
+        <Main ships={ships} films={films} planets={planets} ppl={ppl} />
       </main>
     </div>
   )
